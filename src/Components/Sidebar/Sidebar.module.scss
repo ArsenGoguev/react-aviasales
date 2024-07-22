@@ -1,0 +1,97 @@
+@import '../../styles/variables.scss';
+
+.sidebar {
+  width: 232px;
+  height: 255px;
+  box-shadow: $shadow;
+  border-radius: 8px;
+  padding: 0;
+  font-family: $font;
+  background-color: $color-main;
+  overflow: hidden;
+  
+  @media (max-width: $screen-lg) {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    vertical-align: middle;
+    justify-content: space-between;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  @media (max-width: $screen-md) {
+    justify-content: left;
+  }
+
+  &__header {
+    display: block;
+    padding: 20px 20px 10px;
+
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.5px;
+
+    @media (max-width: $screen-lg) {
+      width: 100%;
+      padding: 5px;
+    }
+  }
+
+  &__item-wrapper {
+    list-style: none;
+    cursor: pointer;
+    overflow: hidden;
+
+    @media (max-width: $screen-lg) {
+      display: inline-block;
+      width: auto;
+      padding: 5px;
+    }
+
+    &:hover {
+      background-color: $color-hover;
+
+      @media (min-width: $screen-lg) {
+        background-color: none;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+
+    font-size: 13px;
+    line-height: 20px;
+
+    @media (max-width: $screen-lg) {
+      padding: 0;
+    }
+  }
+
+  &__custom-checkbox {
+    appearance: none;
+    position: absolute;
+  }
+
+  &__checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $color-accent;
+    border-radius: 10%;
+  }
+
+  &__checkmark {
+    background: url('../../styles/img/checkmark.svg') no-repeat;
+    width: 20px;
+    height: 20px;
+    position: relative;
+
+    left: 3px;
+    top: 6px;
+  }
+}

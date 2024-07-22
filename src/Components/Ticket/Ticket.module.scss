@@ -1,0 +1,83 @@
+@import '../../styles/variables.scss';
+
+.ticket {
+  width: 502px;
+  height: 184px;
+  border-radius: 8px;
+  box-shadow: $shadow;
+
+  font-family: $font;
+
+  background-color: $color-main;
+  margin-top: 20px;
+  padding: 20px;
+
+  @media (max-width: $screen-lg) {
+    width: auto;
+  }
+
+  @media (max-width: $screen-md) {
+    height: auto;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__price {
+    color: $color-accent;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  &__logo {
+    width: 110px;
+    height: 36px;
+    background: url('../../styles/img/s7logo.svg') no-repeat; // убрать ссылку и вставить img в компонент
+  }
+
+  &__info {
+    display: flex;
+    margin-top: 10px;
+
+    @media (max-width: $screen-md) {
+      justify-content: space-between;
+    }
+  }
+
+  &__info-wrapper {
+    width: 141px;
+    margin-left: 20px;
+
+    @media (max-width: $screen-md) {
+      margin: 0;
+      width: auto;
+    }
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+
+  &__info-header {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    color: $color-text-secondary;
+
+
+  }
+
+  &__info-text {
+    font-size: 14px;
+    line-height: 21px; 
+
+    @media (max-width: $screen-md) {
+      font-size: 12px;
+    }
+  }
+}

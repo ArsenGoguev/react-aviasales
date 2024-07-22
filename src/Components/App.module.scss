@@ -1,0 +1,33 @@
+@import '../styles/variables.scss';
+
+.app {
+  width: 960px;
+  background-color: $color-bg;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 160px 0 50px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: $screen-lg) {
+    flex-direction: column;
+    justify-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+
+  &__logo {
+    position: absolute;
+    top: 50px;
+
+    @media (max-width: $screen-lg) {
+      position: static;
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
