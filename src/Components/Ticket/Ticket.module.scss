@@ -68,13 +68,11 @@
     line-height: 18px;
     letter-spacing: 0.5px;
     color: $color-text-secondary;
-
-
   }
 
   &__info-text {
     font-size: 14px;
-    line-height: 21px; 
+    line-height: 21px;
 
     @media (max-width: $screen-md) {
       font-size: 12px;
