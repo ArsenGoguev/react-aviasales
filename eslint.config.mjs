@@ -54,6 +54,7 @@ export default [
   {
     rules: {
       indent: ['error', 2],
+      'default-param-last': 0,
       'consistent-return': 0,
       'max-len': 0,
       'comma-dangle': ['error', 'never'],

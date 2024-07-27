@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Ticket from '../Ticket/Ticket.jsx'
-import Filters from '../Filters/Filters.jsx'
+import Sort from '../Sort/Sort.jsx'
 import ShowMore from '../ShowMore/ShowMore.jsx'
 
 import styles from './TicketList.module.scss'
@@ -9,7 +9,7 @@ import styles from './TicketList.module.scss'
 export default function TicketList() {
   return (
     <div className={styles['ticket-list']}>
-      <Filters />
+      <Sort />
       <Ticket />
       <Ticket />
       <Ticket />
