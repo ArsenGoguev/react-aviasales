@@ -8,7 +8,6 @@
   padding: 0;
   font-family: $font;
   background-color: $color-main;
-  overflow: hidden;
 
   @media (max-width: $screen-lg) {
     width: auto;
@@ -41,8 +40,6 @@
 
   &__item-wrapper {
     list-style: none;
-    cursor: pointer;
-    overflow: hidden;
 
     @media (max-width: $screen-lg) {
       display: inline-block;
@@ -60,6 +57,7 @@
   }
 
   &__item {
+    cursor: pointer;
     display: flex;
     gap: 10px;
     padding: 10px 20px;
@@ -78,20 +76,28 @@
   }
 
   &__checkbox {
-    display: inline-block;
+    position: relative;
     width: 20px;
     height: 20px;
     border: 1px solid $color-accent;
     border-radius: 10%;
+
+    &::before {
+      content: '';
+      background: url('../../styles/img/checkmark.svg') no-repeat;
+      width: 12px;
+      height: 12px;
+    
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      margin-top: 3px;
+      transition: 0.1s ease-in;
+    }
   }
 
-  &__checkmark {
-    background: url('../../styles/img/checkmark.svg') no-repeat;
-    width: 20px;
-    height: 20px;
-    position: relative;
-
-    left: 3px;
-    top: 6px;
+  &__custom-checkbox:checked + .sidebar__checkbox::before {
+    transform: translate(-50%, -50%) scale(1);
   }
 }

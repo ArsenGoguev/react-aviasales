@@ -5,7 +5,7 @@ import styles from './Sort.module.scss'
 
 export default function Sort() {
   const dispatch = useDispatch()
-  const activeSortingButton = useSelector((state) => state.sort.sort)
+  const activeSortingButton = useSelector((state) => state.sort)
 
   return (
     <div className={styles.sort}>
