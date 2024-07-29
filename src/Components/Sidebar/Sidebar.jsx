@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { toggleFilter } from '../../store/actions/actions.js'
+
 import styles from './Sidebar.module.scss'
 
 export default function Sidebar() {
@@ -25,7 +27,7 @@ export default function Sidebar() {
               checked={checkboxes[key]}
               type="checkbox"
               className={styles['sidebar__custom-checkbox']}
-              onChange={() => dispatch({ type: 'TOGGLE_FILTER', key })}
+              onChange={() => dispatch(toggleFilter(key))}
             />
             <span className={styles.sidebar__checkbox} />
             {label}

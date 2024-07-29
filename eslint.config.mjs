@@ -54,6 +54,7 @@ export default [
   {
     rules: {
       indent: ['error', 2],
+      'react/require-default-props': 0,
       'default-param-last': 0,
       'consistent-return': 0,
       'max-len': 0,

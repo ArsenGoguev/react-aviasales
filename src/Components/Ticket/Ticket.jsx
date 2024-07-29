@@ -1,42 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { v4 as generateId } from 'uuid'
 
+import TicketSegment from './TicketSegment.jsx'
 import styles from './Ticket.module.scss'
 
-export default function Ticket() {
+export default function Ticket({ ticketInfo }) {
   return (
     <div className={styles.ticket}>
       <div className={styles.ticket__header}>
-        <span className={styles.ticket__price}>13 400 Р</span>
+        <span className={styles.ticket__price}>
+          {ticketInfo.price.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', minimumFractionDigits: 0 })}
+        </span>
         <div className={styles.ticket__logo} />
       </div>
-      <div className={styles.ticket__info}>
-        <div className={styles['ticket__info-wrapper']}>
-          <div className={styles['ticket__info-header']}>MOW - NKT</div>
-          <div className={styles['ticket__info-text']}>10:45 - 08:00</div>
-        </div>
-        <div className={styles['ticket__info-wrapper']}>
-          <div className={styles['ticket__info-header']}>В ПУТИ</div>
-          <div className={styles['ticket__info-text']}>21ч 15м</div>
-        </div>
-        <div className={styles['ticket__info-wrapper']}>
-          <div className={styles['ticket__info-header']}>2 ПЕРЕСАДКИ</div>
-          <div className={styles['ticket__info-text']}>HKG, JNB</div>
-        </div>
-      </div>
-      <div className={styles.ticket__info}>
-        <div className={styles['ticket__info-wrapper']}>
-          <div className={styles['ticket__info-header']}>MOW - NKT</div>
-          <div className={styles['ticket__info-text']}>11:20 - 00:50</div>
-        </div>
-        <div className={styles['ticket__info-wrapper']}>
-          <div className={styles['ticket__info-header']}>В ПУТИ</div>
-          <div className={styles['ticket__info-text']}>13ч 30м</div>
-        </div>
-        <div className={styles['ticket__info-wrapper']}>
-          <div className={styles['ticket__info-header']}>1 ПЕРЕСАДКА</div>
-          <div className={styles['ticket__info-text']}>HKG</div>
-        </div>
-      </div>
+      {ticketInfo.segments.map((segment) => (
+        <TicketSegment key={generateId()} segment={segment} />
+      ))}
     </div>
   )
+}
+
+Ticket.propTypes = {
+  ticketInfo: PropTypes.object
 }

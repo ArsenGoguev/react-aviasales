@@ -1,4 +1,6 @@
 /* eslint-disable indent */
+import { TOGGLE_FILTER } from '../actions/actions.js'
+
 const defaultState = {
   all: false,
   without: false,
@@ -7,9 +9,7 @@ const defaultState = {
   three: false
 }
 
-const TOGGLE_FILTER = 'TOGGLE_FILTER'
-
-function toggleFilter(state, filter) {
+function filterState(state, filter) {
   const isAll = state.all
   const newState = { ...state, [filter]: !state[filter] }
   const { all, ...remainingFilters } = newState
@@ -33,7 +33,7 @@ function toggleFilter(state, filter) {
 export default function filterReducer(state = defaultState, action) {
   switch (action.type) {
     case TOGGLE_FILTER:
-      return toggleFilter(state, action.key)
+      return filterState(state, action.payload)
     default:
       return state
   }
