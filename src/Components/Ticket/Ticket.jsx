@@ -12,7 +12,7 @@ export default function Ticket({ ticketInfo }) {
         <span className={styles.ticket__price}>
           {ticketInfo.price.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB', minimumFractionDigits: 0 })}
         </span>
-        <div className={styles.ticket__logo} />
+        <img alt="Company Logo" src={`//pics.avs.io/99/36/${ticketInfo.carrier}.png`} className={styles.ticket__logo} />
       </div>
       {ticketInfo.segments.map((segment) => (
         <TicketSegment key={generateId()} segment={segment} />
@@ -22,5 +22,17 @@ export default function Ticket({ ticketInfo }) {
 }
 
 Ticket.propTypes = {
-  ticketInfo: PropTypes.object
+  ticketInfo: PropTypes.shape({
+    price: PropTypes.number.isRequired,
+    carrier: PropTypes.string.isRequired,
+    segments: PropTypes.arrayOf(
+      PropTypes.shape({
+        origin: PropTypes.string.isRequired,
+        destination: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        duration: PropTypes.number.isRequired,
+        stops: PropTypes.arrayOf(PropTypes.string).isRequired
+      })
+    ).isRequired
+  }).isRequired
 }

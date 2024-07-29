@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getTravelTime, getTravelDuration, getStopsLabel } from '../../utilites/ticketService.js'
+import { getTravelTime, getTravelDuration, getStopsLabel } from '../../utils/ticketService.js'
 
 import styles from './Ticket.module.scss'
 
@@ -32,5 +32,11 @@ export default function TicketSegment({ segment }) {
 }
 
 TicketSegment.propTypes = {
-  segment: PropTypes.object
+  segment: PropTypes.shape({
+    origin: PropTypes.string.isRequired,
+    destination: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    duration: PropTypes.number.isRequired,
+    stops: PropTypes.arrayOf(PropTypes.string).isRequired
+  }).isRequired
 }

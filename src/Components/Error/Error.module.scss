@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+.error {
+  font-family: $font;
+  background-color: $color-bg-error;
+  color: $color-error;
+  border: 1px solid $color-error;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px 0;
+  font-size: 14px;
+}

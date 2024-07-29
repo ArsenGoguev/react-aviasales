@@ -2,11 +2,11 @@
 import { TOGGLE_FILTER } from '../actions/actions.js'
 
 const defaultState = {
-  all: false,
-  without: false,
-  one: false,
-  two: false,
-  three: false
+  all: true,
+  without: true,
+  one: true,
+  two: true,
+  three: true
 }
 
 function filterState(state, filter) {

@@ -1,3 +1,5 @@
+import sortTickets from '../../utils/sortTickets.js'
+
 export const TOGGLE_FILTER = 'TOGGLE_FILTER'
 export function toggleFilter(filter) {
   return {
@@ -52,9 +54,12 @@ export function saveResponseStatus(status) {
 }
 
 export const SHOW_MORE_TICKETS = 'SHOW_MORE_TICKETS'
-export function showMoreTickets() {
+export function showMoreTickets(tickets, sortType, currentShowedTickets) {
+  const sortedTickets = sortTickets(tickets, sortType)
+  const nextTickets = sortedTickets.slice(currentShowedTickets.length, currentShowedTickets.length + 5)
   return {
-    type: SHOW_MORE_TICKETS
+    type: SHOW_MORE_TICKETS,
+    payload: nextTickets
   }
 }
 
@@ -63,5 +68,14 @@ export function setShowedTickets(data) {
   return {
     type: SET_INITIAL_DISPLAYED_TICKETS,
     payload: data
+  }
+}
+
+export const UPDATE_SHOWED_TICKETS = 'UPDATE_SHOWED_TICKETS'
+export function updateShowedTickets(tickets, sortType) {
+  const sortedTickets = sortTickets(tickets, sortType)
+  return {
+    type: UPDATE_SHOWED_TICKETS,
+    payload: sortedTickets.slice(0, 5)
   }
 }

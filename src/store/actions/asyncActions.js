@@ -1,7 +1,5 @@
 /* eslint-disable import/prefer-default-export, func-names */
-import { store } from '../store.js'
-
-import { saveApiKey, saveTickets, saveResponseStatus } from './actions.js'
+import { saveApiKey, saveTickets, saveResponseStatus, setShowedTickets } from './actions.js'
 
 const apiURL = 'https://aviasales-test-api.kata.academy/'
 
@@ -10,6 +8,7 @@ export function startApp() {
     fetch(`${apiURL}search`)
       .then((res) => res.json())
       .then((json) => {
+        sessionStorage.setItem('searchId', json.searchId)
         dispatch(saveApiKey(json.searchId))
         return json.searchId
       })
@@ -19,25 +18,23 @@ export function startApp() {
           .then((json) => {
             dispatch(saveTickets(json.tickets))
             dispatch(saveResponseStatus(json.stop))
+            dispatch(setShowedTickets(json.tickets))
           })
       })
   }
 }
 
-export function getApiKey() {
+export function getData() {
   return function (dispatch) {
-    fetch(`${apiURL}search`)
-      .then((res) => res.json())
-      .then((json) => dispatch(saveApiKey(json.searchId)))
-  }
-}
-
-export function getTickets() {
-  return function (dispatch) {
-    fetch(`${apiURL}tickets?searchId=${store.api.searchId}`)
-      .then((res) => res.json())
+    fetch(`${apiURL}tickets?searchId=${sessionStorage.getItem('searchId')}`)
+      .then((res) => {
+        if (!res.status === 500) throw new Error('oops')
+        return res.json()
+      })
       .then((json) => {
+        dispatch(saveResponseStatus(json.stop))
         dispatch(saveTickets(json.tickets))
       })
+      .catch((err) => console.log(err))
   }
 }
