@@ -4,20 +4,14 @@ import { saveData, setErrorStatus } from './slices.js'
 
 const apiURL = 'https://aviasales-test-api.kata.academy/'
 
-export const getSearchId = createAsyncThunk('tickets/getSearchId', async (_, { dispatch }) => {
+const getData = createAsyncThunk('tickets/getData', async (_, { dispatch }) => {
   try {
-    const response = await fetch(`${apiURL}search`)
-    if (!response.ok) throw new Error(`Error ${response.status}: Ошибка сервера`)
-    const json = await response.json()
-    sessionStorage.setItem('searchId', json.searchId)
-  } catch (error) {
-    dispatch(setErrorStatus(true))
-  }
-})
-
-export const getData = createAsyncThunk('tickets/getData', async (_, { dispatch }) => {
-  if (!sessionStorage.getItem('searchId')) await getSearchId()
-  try {
+    if (!sessionStorage.getItem('searchId')) {
+      const apiKeyResponse = await fetch(`${apiURL}search`)
+      if (!apiKeyResponse.ok) throw new Error(`Error ${apiKeyResponse.status}: Ошибка сервера`)
+      const apiKeyJson = await apiKeyResponse.json()
+      sessionStorage.setItem('searchId', apiKeyJson.searchId)
+    }
     const response = await fetch(`${apiURL}tickets?searchId=${sessionStorage.getItem('searchId')}`)
     if (!response.ok) throw new Error('Ошибка сервера')
     const json = await response.json()
@@ -27,3 +21,5 @@ export const getData = createAsyncThunk('tickets/getData', async (_, { dispatch 
     dispatch(saveData({ tickets: [], stop: false }))
   }
 })
+
+export default getData

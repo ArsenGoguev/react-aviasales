@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import logo from '../styles/img/Logo.png'
-import { getData, getSearchId } from '../store/asyncActions.js'
+import getData from '../store/service.js'
 
 import styles from './App.module.scss'
 import Sidebar from './Sidebar/Sidebar.jsx'
@@ -13,10 +13,6 @@ export default function App() {
   const dispatch = useDispatch()
   const loadingStatus = useSelector((state) => state.api.loadingStatus)
   const tickets = useSelector((state) => state.api.tickets)
-
-  useEffect(() => {
-    dispatch(getSearchId())
-  }, [dispatch])
 
   useEffect(() => {
     if (loadingStatus) dispatch(getData())
