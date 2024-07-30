@@ -1,9 +1,10 @@
-/* eslint-disable import/prefer-default-export, func-names */
+import { createAsyncThunk } from '@reduxjs/toolkit'
+
 import { saveTickets, setResponseStatus, setErrorStatus, displayTickets } from './actions.js'
 
 const apiURL = 'https://aviasales-test-api.kata.academy/'
 
-export const getSearchId = () => async (dispatch) => {
+export const getSearchId = createAsyncThunk('tickets/getSearchId', async (_, { dispatch }) => {
   try {
     const response = await fetch(`${apiURL}search`)
     if (!response.ok) throw new Error(`Error ${response.status}: Ошибка сервера`)
@@ -12,12 +13,11 @@ export const getSearchId = () => async (dispatch) => {
   } catch (error) {
     dispatch(setErrorStatus(true))
   }
-}
+})
 
-export const getData = () => async (dispatch) => {
+export const getData = createAsyncThunk('tickets/getData', async (_, { dispatch }) => {
   let json
   try {
-    console.log('оаз')
     const response = await fetch(`${apiURL}tickets?searchId=${sessionStorage.getItem('searchId')}`)
     if (response.status === 500) throw new Error(`Error ${response.status}: Ошибка сервера`)
     json = await response.json()
@@ -27,8 +27,8 @@ export const getData = () => async (dispatch) => {
     console.log(error)
     if (!error.message.includes('Ошибка сервера')) dispatch(setErrorStatus(true))
   } finally {
-    if (json) {
-      if (json.stop === true) dispatch(setResponseStatus(true))
+    if (json && json.stop === true) {
+      dispatch(setResponseStatus(true))
     }
   }
-}
+})

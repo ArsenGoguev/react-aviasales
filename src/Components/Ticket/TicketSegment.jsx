@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getTravelTime, getTravelDuration, getStopsLabel } from '../../utils/ticketService.js'
+import { getTravelTime, getTravelDuration, getStopsLabel } from '../../utils/ticketUtils.js'
 
 import styles from './Ticket.module.scss'
 
-export default function TicketSegment({ segment }) {
+const TicketSegment = React.memo(({ segment }) => {
   const startTime = getTravelTime(segment.date)
   const arrivalTime = getTravelTime(segment.date, segment.duration)
   const duration = getTravelDuration(segment.duration)
@@ -29,7 +29,7 @@ export default function TicketSegment({ segment }) {
       </div>
     </div>
   )
-}
+})
 
 TicketSegment.propTypes = {
   segment: PropTypes.shape({
@@ -40,3 +40,5 @@ TicketSegment.propTypes = {
     stops: PropTypes.arrayOf(PropTypes.string).isRequired
   }).isRequired
 }
+
+export default TicketSegment

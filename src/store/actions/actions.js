@@ -10,29 +10,11 @@ export function filterTicketList(filter) {
 
 /* SORTING ACTIONS */
 
-export const SORT_BY_CHEAPNESS = 'SORT_BY_CHEAPNESS'
-export function sortByCheapness(sortingType) {
-  return {
-    type: SORT_BY_CHEAPNESS,
-    payload: sortingType
-  }
-}
-
-export const SORT_BY_SPEED = 'SORT_BY_SPEED'
-export function sortBySpeed(sortingType) {
-  return {
-    type: SORT_BY_SPEED,
-    payload: sortingType
-  }
-}
-
-export const SORT_BY_OPTIMALITY = 'SORT_BY_OPTIMALITY'
-export function sortByOptimality(sortingType) {
-  return {
-    type: SORT_BY_OPTIMALITY,
-    payload: sortingType
-  }
-}
+export const SORT_TICKETS = 'SORT_TICKETS'
+export const sortTickets = (sortingType) => ({
+  type: SORT_TICKETS,
+  payload: sortingType
+})
 
 /* ACTIONS WITH API */
 

@@ -1,7 +1,7 @@
-import { SORT_BY_CHEAPNESS, SORT_BY_OPTIMALITY, SORT_BY_SPEED, updateDisplayedTicketList } from '../actions/actions.js'
+import { SORT_TICKETS, updateDisplayedTicketList } from '../actions/actions.js'
 
 const updateSortingTypeMiddleware = (store) => (next) => (action) => {
-  if ([SORT_BY_CHEAPNESS, SORT_BY_OPTIMALITY, SORT_BY_SPEED].includes(action.type)) {
+  if (action.type === SORT_TICKETS) {
     const state = store.getState()
     let sortingType = action.payload
     if (state.sortType === action.payload) sortingType = ''
