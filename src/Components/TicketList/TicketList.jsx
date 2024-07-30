@@ -15,8 +15,8 @@ export default function TicketList() {
   const { ticketCount, sortingType } = useSelector((state) => state)
   const filters = useSelector((state) => state.filters)
 
-  const ticketsArray = sortTickets(filterTickets(tickets, filters), sortingType).slice(0, ticketCount)
-  const ticketList = ticketsArray.map((ticket) => <Ticket key={generateId()} ticketInfo={ticket} />)
+  const sortedTickets = sortTickets(filterTickets(tickets, filters), sortingType).slice(0, ticketCount)
+  const ticketList = sortedTickets.map((ticket) => <Ticket key={generateId()} ticketInfo={ticket} />)
 
   if (ticketList.length === 0 && !loadingStatus) return <WarningMsg />
 

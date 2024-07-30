@@ -42,8 +42,9 @@
       padding: 5px;
     }
 
-    &:hover {
+    &:hover, &:focus-within {
       background-color: $color-hover;
+      border: none;
 
       @media (min-width: $screen-lg) {
         background-color: none;

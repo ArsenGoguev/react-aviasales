@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { saveData, setErrorStatus } from './actions.js'
+import { saveData, setErrorStatus } from './slices.js'
 
 const apiURL = 'https://aviasales-test-api.kata.academy/'
 

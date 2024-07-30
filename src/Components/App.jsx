@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import logo from '../styles/img/Logo.png'
-import { getData, getSearchId } from '../store/actions/asyncActions.js'
+import { getData, getSearchId } from '../store/asyncActions.js'
 
 import styles from './App.module.scss'
 import Sidebar from './Sidebar/Sidebar.jsx'

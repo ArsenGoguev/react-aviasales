@@ -54,6 +54,9 @@ export default [
   {
     rules: {
       indent: ['error', 2],
+      'jsx-a11y/no-noninteractive-element-interactions': 0,
+      'jsx-a11y/tabindex-no-positive': 0,
+      'jsx-a11y/no-noninteractive-tabindex': 0,
       'react/require-default-props': 0,
       'default-param-last': 0,
       'consistent-return': 0,
