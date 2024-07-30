@@ -42,7 +42,8 @@
       padding: 5px;
     }
 
-    &:hover, &:focus-within {
+    &:hover,
+    &:focus-within {
       background-color: $color-hover;
       border: none;
 
