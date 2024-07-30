@@ -44,11 +44,6 @@
       background-color: $color-hover;
     }
 
-    &:focus-within {
-      background-color: $color-hover;
-      border-radius: 8px;
-    }
-
     &--active {
       background-color: $color-accent;
       color: $color-main;
