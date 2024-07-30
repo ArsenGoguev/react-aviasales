@@ -18,19 +18,11 @@ export const sortTickets = (sortingType) => ({
 
 /* ACTIONS WITH API */
 
-export const SAVE_TICKETS = 'SAVE_TICKETS'
-export function saveTickets(data) {
+export const SAVE_DATA = 'SAVE_DATA'
+export function saveData(data) {
   return {
-    type: SAVE_TICKETS,
+    type: SAVE_DATA,
     payload: data
-  }
-}
-
-export const SET_LOADING_STATUS = 'SET_LOADING_STATUS'
-export function setLoadingStatus(status) {
-  return {
-    type: SET_LOADING_STATUS,
-    payload: status
   }
 }
 

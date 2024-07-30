@@ -1,8 +1,7 @@
 @import '../styles/variables.scss';
+@import '../styles/mixins.scss';
 
 .app {
-  width: 960px;
-  background-color: $color-bg;
   display: flex;
   gap: 20px;
   justify-content: center;
@@ -10,6 +9,7 @@
   min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
+  @include component-main-styles($font, $color-bg, 0, 960px, auto);
 
   @media (max-width: $screen-lg) {
     flex-direction: column;

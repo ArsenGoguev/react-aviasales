@@ -1,12 +1,6 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .warning {
-  font-family: $font;
-  background-color: $color-bg-warning;
-  color: $color-warning;
-  border: 1px solid $color-warning;
-  padding: 20px;
-  border-radius: 5px;
-  margin: 20px 0;
-  font-size: 14px;
+  @include notification($color-bg-warning, $color-warning);
 }

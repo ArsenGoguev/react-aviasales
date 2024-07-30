@@ -1,16 +1,11 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .ticket {
-  width: 502px;
-  height: 184px;
-  border-radius: 8px;
   box-shadow: $shadow;
-
-  font-family: $font;
-
-  background-color: $color-main;
   margin-top: 20px;
   padding: 20px;
+  @include component-main-styles($font, $color-main, 8px, 502px, 184px);
 
   @media (max-width: $screen-lg) {
     width: auto;
@@ -29,9 +24,8 @@
 
   &__price {
     color: $color-accent;
-    font-size: 24px;
     font-weight: 600;
-    line-height: 24px;
+    @include font-style(24px, 24px);
   }
 
   &__logo {
@@ -63,15 +57,13 @@
   }
 
   &__info-header {
-    font-size: 12px;
-    line-height: 18px;
+    @include font-style(12px, 18px);
     letter-spacing: 0.5px;
     color: $color-text-secondary;
   }
 
   &__info-text {
-    font-size: 14px;
-    line-height: 21px;
+    @include font-style(14px, 21px);
 
     @media (max-width: $screen-md) {
       font-size: 12px;

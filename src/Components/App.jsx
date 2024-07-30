@@ -7,7 +7,6 @@ import { getData, getSearchId } from '../store/actions/asyncActions.js'
 import styles from './App.module.scss'
 import Sidebar from './Sidebar/Sidebar.jsx'
 import TicketList from './TicketList/TicketList.jsx'
-import Button from './Button/Button.jsx'
 import SortTab from './SortTab/SortTab.jsx'
 
 export default function App() {
@@ -31,7 +30,6 @@ export default function App() {
       <div>
         <SortTab />
         <TicketList />
-        <Button />
       </div>
     </div>
   )
