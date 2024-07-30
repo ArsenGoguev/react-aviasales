@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { saveTickets, setResponseStatus, setErrorStatus, displayTickets } from './actions.js'
+import { saveTickets, setLoadingStatus, setErrorStatus } from './actions.js'
 
 const apiURL = 'https://aviasales-test-api.kata.academy/'
 
@@ -19,16 +19,16 @@ export const getData = createAsyncThunk('tickets/getData', async (_, { dispatch 
   let json
   try {
     const response = await fetch(`${apiURL}tickets?searchId=${sessionStorage.getItem('searchId')}`)
-    if (response.status === 500) throw new Error(`Error ${response.status}: Ошибка сервера`)
+    if (!response.ok) throw new Error('Ошибка сервера')
     json = await response.json()
-    dispatch(saveTickets(json.tickets))
-    dispatch(displayTickets(json.tickets))
+    if (json.tickets || json.stop) {
+      dispatch(saveTickets(json.tickets))
+      dispatch(setLoadingStatus(!json.stop))
+    }
   } catch (error) {
     console.log(error)
     if (!error.message.includes('Ошибка сервера')) dispatch(setErrorStatus(true))
-  } finally {
-    if (json && json.stop === true) {
-      dispatch(setResponseStatus(true))
-    }
+    dispatch(saveTickets([]))
+    dispatch(setLoadingStatus(true))
   }
 })

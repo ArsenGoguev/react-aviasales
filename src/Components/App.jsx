@@ -5,10 +5,10 @@ import logo from '../styles/img/Logo.png'
 import { getData, getSearchId } from '../store/actions/asyncActions.js'
 
 import styles from './App.module.scss'
-import SortTab from './SortTab/SortTab.jsx'
 import Sidebar from './Sidebar/Sidebar.jsx'
 import TicketList from './TicketList/TicketList.jsx'
-import ShowMoreButton from './ShowMoreButton/ShowMoreButton.jsx'
+import Button from './Button/Button.jsx'
+import SortTab from './SortTab/SortTab.jsx'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -20,7 +20,8 @@ export default function App() {
   }, [dispatch])
 
   useEffect(() => {
-    if (!loadingStatus) dispatch(getData())
+    if (loadingStatus) dispatch(getData())
+    if (!loadingStatus) sessionStorage.removeItem('searchId')
   }, [loadingStatus, tickets, dispatch])
 
   return (
@@ -30,7 +31,7 @@ export default function App() {
       <div>
         <SortTab />
         <TicketList />
-        <ShowMoreButton />
+        <Button />
       </div>
     </div>
   )

@@ -26,10 +26,10 @@ export function saveTickets(data) {
   }
 }
 
-export const SET_RESPONSE_STATUS = 'SET_RESPONSE_STATUS'
-export function setResponseStatus(status) {
+export const SET_LOADING_STATUS = 'SET_LOADING_STATUS'
+export function setLoadingStatus(status) {
   return {
-    type: SET_RESPONSE_STATUS,
+    type: SET_LOADING_STATUS,
     payload: status
   }
 }
@@ -49,23 +49,5 @@ export function displayMoreTickets(tickets) {
   return {
     type: DISPLAY_MORE_TICKETS,
     payload: tickets
-  }
-}
-
-/* ACTIONS WITH DISPLAYED TICKETS */
-
-export const DISPLAY_TICKETS = 'DISPLAY_TICKETS'
-export function displayTickets(tickets) {
-  return {
-    type: DISPLAY_TICKETS,
-    payload: tickets
-  }
-}
-
-export const UPDATE_DISPLAYED_TICKET_LIST = 'UPDATE_DISPLAYED_TICKET_LIST'
-export function updateDisplayedTicketList(data) {
-  return {
-    type: UPDATE_DISPLAYED_TICKET_LIST,
-    payload: data
   }
 }

@@ -7,7 +7,7 @@ import styles from './SortTab.module.scss'
 
 export default function SortTab() {
   const dispatch = useDispatch()
-  const activeSortingButton = useSelector((state) => state.sortType)
+  const activeSortingButton = useSelector((state) => state.sortingType)
 
   const handleSort = useCallback(
     (key) => {
