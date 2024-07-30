@@ -16,6 +16,7 @@ export const getSearchId = createAsyncThunk('tickets/getSearchId', async (_, { d
 })
 
 export const getData = createAsyncThunk('tickets/getData', async (_, { dispatch }) => {
+  if (!sessionStorage.getItem('searchId')) return
   try {
     const response = await fetch(`${apiURL}tickets?searchId=${sessionStorage.getItem('searchId')}`)
     if (!response.ok) throw new Error('Ошибка сервера')
