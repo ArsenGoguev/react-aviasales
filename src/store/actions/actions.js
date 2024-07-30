@@ -1,41 +1,40 @@
-import sortTickets from '../../utils/sortTickets.js'
+/* FILTERING ACTIONS */
 
-export const TOGGLE_FILTER = 'TOGGLE_FILTER'
-export function toggleFilter(filter) {
+export const FILTER_TICKET_LIST = 'FILTER_TICKET_LIST'
+export function filterTicketList(filter) {
   return {
-    type: TOGGLE_FILTER,
+    type: FILTER_TICKET_LIST,
     payload: filter
   }
 }
 
+/* SORTING ACTIONS */
+
 export const SORT_BY_CHEAPNESS = 'SORT_BY_CHEAPNESS'
-export function sortByCheapness() {
+export function sortByCheapness(sortingType) {
   return {
-    type: SORT_BY_CHEAPNESS
+    type: SORT_BY_CHEAPNESS,
+    payload: sortingType
   }
 }
 
 export const SORT_BY_SPEED = 'SORT_BY_SPEED'
-export function sortBySpeed() {
+export function sortBySpeed(sortingType) {
   return {
-    type: SORT_BY_SPEED
+    type: SORT_BY_SPEED,
+    payload: sortingType
   }
 }
 
 export const SORT_BY_OPTIMALITY = 'SORT_BY_OPTIMALITY'
-export function sortByOptimality() {
+export function sortByOptimality(sortingType) {
   return {
-    type: SORT_BY_OPTIMALITY
+    type: SORT_BY_OPTIMALITY,
+    payload: sortingType
   }
 }
 
-export const SAVE_API_KEY = 'SAVE_API_KEY'
-export function saveApiKey(key) {
-  return {
-    type: SAVE_API_KEY,
-    payload: key
-  }
-}
+/* ACTIONS WITH API */
 
 export const SAVE_TICKETS = 'SAVE_TICKETS'
 export function saveTickets(data) {
@@ -45,37 +44,46 @@ export function saveTickets(data) {
   }
 }
 
-export const SAVE_RESPONSE_STATUS = 'SAVE_RESPONSE_STATUS'
-export function saveResponseStatus(status) {
+export const SET_RESPONSE_STATUS = 'SET_RESPONSE_STATUS'
+export function setResponseStatus(status) {
   return {
-    type: SAVE_RESPONSE_STATUS,
+    type: SET_RESPONSE_STATUS,
     payload: status
   }
 }
 
-export const SHOW_MORE_TICKETS = 'SHOW_MORE_TICKETS'
-export function showMoreTickets(tickets, sortType, currentShowedTickets) {
-  const sortedTickets = sortTickets(tickets, sortType)
-  const nextTickets = sortedTickets.slice(currentShowedTickets.length, currentShowedTickets.length + 5)
+export const SET_ERROR_STATUS = 'SET_ERROR_STATUS'
+export function setErrorStatus(status) {
   return {
-    type: SHOW_MORE_TICKETS,
-    payload: nextTickets
+    type: SET_ERROR_STATUS,
+    payload: status
   }
 }
 
-export const SET_INITIAL_DISPLAYED_TICKETS = 'SET_INITIAL_DISPLAYED_TICKETS'
-export function setShowedTickets(data) {
+/* SHOWMORE BUTTON ACTIONS */
+
+export const DISPLAY_MORE_TICKETS = 'DISPLAY_MORE_TICKETS'
+export function displayMoreTickets(tickets) {
   return {
-    type: SET_INITIAL_DISPLAYED_TICKETS,
+    type: DISPLAY_MORE_TICKETS,
+    payload: tickets
+  }
+}
+
+/* ACTIONS WITH DISPLAYED TICKETS */
+
+export const DISPLAY_TICKETS = 'DISPLAY_TICKETS'
+export function displayTickets(tickets) {
+  return {
+    type: DISPLAY_TICKETS,
+    payload: tickets
+  }
+}
+
+export const UPDATE_DISPLAYED_TICKET_LIST = 'UPDATE_DISPLAYED_TICKET_LIST'
+export function updateDisplayedTicketList(data) {
+  return {
+    type: UPDATE_DISPLAYED_TICKET_LIST,
     payload: data
-  }
-}
-
-export const UPDATE_SHOWED_TICKETS = 'UPDATE_SHOWED_TICKETS'
-export function updateShowedTickets(tickets, sortType) {
-  const sortedTickets = sortTickets(tickets, sortType)
-  return {
-    type: UPDATE_SHOWED_TICKETS,
-    payload: sortedTickets.slice(0, 5)
   }
 }

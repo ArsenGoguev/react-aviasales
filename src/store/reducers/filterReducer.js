@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { TOGGLE_FILTER } from '../actions/actions.js'
+import { FILTER_TICKET_LIST } from '../actions/actions.js'
 
 const defaultState = {
   all: true,
@@ -32,7 +32,7 @@ function filterState(state, filter) {
 
 export default function filterReducer(state = defaultState, action) {
   switch (action.type) {
-    case TOGGLE_FILTER:
+    case FILTER_TICKET_LIST:
       return filterState(state, action.payload)
     default:
       return state

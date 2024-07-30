@@ -6,10 +6,11 @@ import sortReducer from './reducers/sortReducer.js'
 import filterReducer from './reducers/filterReducer.js'
 import ticketsReducer from './reducers/ticketsReducer.js'
 import listReducer from './reducers/listReducer.js'
-import { apiKeyMiddleware } from './middleware/middleware.js'
+import displayTicketsMiddleware from './middleware/displayTicketsMiddleware.js'
+import updateSortingTypeMiddleware from './middleware/updateSortingTypeMiddleware.js'
 
 const reducer = combineReducers({
-  sort: sortReducer,
+  sortType: sortReducer,
   filters: filterReducer,
   api: ticketsReducer,
   ticketList: listReducer
@@ -17,5 +18,6 @@ const reducer = combineReducers({
 
 export const store = configureStore({
   reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiKeyMiddleware, thunk)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(displayTicketsMiddleware, updateSortingTypeMiddleware, thunk)
 })

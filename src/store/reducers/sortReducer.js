@@ -6,14 +6,11 @@ const defaultState = ''
 export default function sortReducer(state = defaultState, action) {
   switch (action.type) {
     case SORT_BY_CHEAPNESS:
-      if (state === 'cheap') return ''
-      return 'cheap'
+      return state === action.payload ? '' : action.payload
     case SORT_BY_SPEED:
-      if (state === 'speed') return ''
-      return 'speed'
+      return state === action.payload ? '' : action.payload
     case SORT_BY_OPTIMALITY:
-      if (state === 'optimal') return ''
-      return 'optimal'
+      return state === action.payload ? '' : action.payload
     default:
       return state
   }

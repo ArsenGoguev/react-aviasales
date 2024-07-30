@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import logo from '../styles/img/Logo.png'
-import { startApp, getData } from '../store/actions/asyncActions.js'
+import { getData, getSearchId } from '../store/actions/asyncActions.js'
 
 import styles from './App.module.scss'
-import Sort from './Sort/Sort.jsx'
+import SortTab from './SortTab/SortTab.jsx'
 import Sidebar from './Sidebar/Sidebar.jsx'
 import TicketList from './TicketList/TicketList.jsx'
-import ShowMore from './ShowMore/ShowMore.jsx'
+import ShowMoreButton from './ShowMoreButton/ShowMoreButton.jsx'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export default function App() {
   const tickets = useSelector((state) => state.api.tickets)
 
   useEffect(() => {
-    dispatch(startApp())
+    dispatch(getSearchId())
   }, [dispatch])
 
   useEffect(() => {
@@ -28,9 +28,9 @@ export default function App() {
       <img className={styles.app__logo} src={logo} alt="App Logo" />
       <Sidebar />
       <div>
-        <Sort />
+        <SortTab />
         <TicketList />
-        <ShowMore />
+        <ShowMoreButton />
       </div>
     </div>
   )

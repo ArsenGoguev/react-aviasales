@@ -77,7 +77,7 @@ export default [
       '@react/react-in-jsx-scope': 'off',
       '@react/prop-types': 0,
       'react/forbid-prop-types': 0,
-      '@import/no-unresolved': [2, { caseSensitive: false }],
+      'import/no-unresolved': 0,
       '@react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
       'import/extensions': ['error', 'ignorePackages'],
       '@import/order': [

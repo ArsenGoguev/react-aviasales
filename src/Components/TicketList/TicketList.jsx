@@ -4,11 +4,12 @@ import { v4 as generateId } from 'uuid'
 
 import Ticket from '../Ticket/Ticket.jsx'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx'
-// import Error from '../Error/Error.jsx'
+import ErrorMsg from '../ErrorMsg/ErrorMsg.jsx'
 
 import styles from './TicketList.module.scss'
 
 export default function TicketList() {
+  const error = useSelector((state) => state.api.errorStatus)
   const ticketListForRender = useSelector((state) => state.ticketList.showedTickets)
   const loading = useSelector((state) => state.api.loadingStatus)
   const ticketsArray = ticketListForRender.map((ticket) => <Ticket key={generateId()} ticketInfo={ticket} />)
@@ -16,7 +17,7 @@ export default function TicketList() {
   return (
     <div className={styles['ticket-list']}>
       {!loading && <LoadingSpinner />}
-      {/* <Error /> */}
+      {error && <ErrorMsg />}
       {ticketsArray}
     </div>
   )

@@ -1,40 +1,34 @@
 /* eslint-disable import/prefer-default-export, func-names */
-import { saveApiKey, saveTickets, saveResponseStatus, setShowedTickets } from './actions.js'
+import { saveTickets, setResponseStatus, setErrorStatus, displayTickets } from './actions.js'
 
 const apiURL = 'https://aviasales-test-api.kata.academy/'
 
-export function startApp() {
-  return function (dispatch) {
-    fetch(`${apiURL}search`)
-      .then((res) => res.json())
-      .then((json) => {
-        sessionStorage.setItem('searchId', json.searchId)
-        dispatch(saveApiKey(json.searchId))
-        return json.searchId
-      })
-      .then((searchId) => {
-        fetch(`${apiURL}tickets?searchId=${searchId}`)
-          .then((res) => res.json())
-          .then((json) => {
-            dispatch(saveTickets(json.tickets))
-            dispatch(saveResponseStatus(json.stop))
-            dispatch(setShowedTickets(json.tickets))
-          })
-      })
+export const getSearchId = () => async (dispatch) => {
+  try {
+    const response = await fetch(`${apiURL}search`)
+    if (!response.ok) throw new Error(`Error ${response.status}: Ошибка сервера`)
+    const json = await response.json()
+    sessionStorage.setItem('searchId', json.searchId)
+  } catch (error) {
+    dispatch(setErrorStatus(true))
   }
 }
 
-export function getData() {
-  return function (dispatch) {
-    fetch(`${apiURL}tickets?searchId=${sessionStorage.getItem('searchId')}`)
-      .then((res) => {
-        if (!res.status === 500) throw new Error('oops')
-        return res.json()
-      })
-      .then((json) => {
-        dispatch(saveResponseStatus(json.stop))
-        dispatch(saveTickets(json.tickets))
-      })
-      .catch((err) => console.log(err))
+export const getData = () => async (dispatch) => {
+  let json
+  try {
+    console.log('оаз')
+    const response = await fetch(`${apiURL}tickets?searchId=${sessionStorage.getItem('searchId')}`)
+    if (response.status === 500) throw new Error(`Error ${response.status}: Ошибка сервера`)
+    json = await response.json()
+    dispatch(saveTickets(json.tickets))
+    dispatch(displayTickets(json.tickets))
+  } catch (error) {
+    console.log(error)
+    if (!error.message.includes('Ошибка сервера')) dispatch(setErrorStatus(true))
+  } finally {
+    if (json) {
+      if (json.stop === true) dispatch(setResponseStatus(true))
+    }
   }
 }

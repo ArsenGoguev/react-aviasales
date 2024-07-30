@@ -1,8 +1,8 @@
 import React from 'react'
 
-import styles from './Error.module.scss'
+import styles from './ErrorMsg.module.scss'
 
-export default function Error() {
+export default function ErrorMsg() {
   return (
     <div className={styles.error}>
       <h2>Произошла ошибка</h2>
